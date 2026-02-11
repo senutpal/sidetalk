@@ -19,11 +19,47 @@
     <link rel="apple-touch-icon" href="/icon.png">
 
     <%# Includes all stylesheet files in app/assets/stylesheets %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.css">
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
-    <%= yield %>
+    <div class="ui inverted menu" style="border-radius: 0;">
+      <div class="ui container">
+        <div class="header item">
+          Sidetalk
+        </div>
+        <a href="#" class="item">Chatrooms</a>
+        <a href="#" class="item">Messages</a>
+        <div class="right menu">
+          <div class="ui simple dropdown item">
+            <i class="user circle icon"></i> Account <i class="dropdown icon"></i>
+            <div class="menu">
+              <a class="item" href="#">Profile</a>
+              <a class="item" href="#">Logout</a>
+            </div>
+          </div>
+          <a href="#" class="ui item">Sign Up</a>
+          <a href="#" class="ui primary button" 
+            style="margin-left: 0.5em; margin-top: 0.5em; margin-bottom: 0.5em;">
+            Login
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      $('.ui.dropdown').dropdown();
+    </script>
+
+    <div class="ui container" 
+      style="padding-left: 1.5em; padding-right:1.5em;">
+      <%= yield %>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.js"></script>
+
   </body>
 </html>
