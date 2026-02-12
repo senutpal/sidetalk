@@ -58,7 +58,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.js"></script>
 
     <script>
-      $('.ui.dropdown').dropdown();
+      document.addEventListener("turbo:load", function() {
+        $('.ui.dropdown').dropdown();
+      });
     </script>
 
   </body>
