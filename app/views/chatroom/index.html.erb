@@ -1,3 +1,57 @@
-<h1>
-    You have reached the root route
-</h1>
+<div class="ui container chat-container">
+
+    <div class="ui stackable grid">
+  
+      <div class="twelve wide computer sixteen wide tablet sixteen wide mobile column">
+  
+        <div class="ui segment chat-header">
+          <h2 class="ui header">
+            <i class="comments icon"></i>
+            <div class="content">
+              General Chatroom
+              <div class="sub header">Welcome to Sidetalk community</div>
+            </div>
+          </h2>
+        </div>
+  
+        <div id="chat-messages" class="ui segment chat-messages">
+  
+          <% @messages.each do |message| %>
+            <div class="chat-message other">
+              <div class="bubble">
+                <div class="username"><%= message.user.username %></div>
+                <div><%= message.body %></div>
+              </div>
+            </div>
+          <% end %>
+  
+        </div>
+  
+        <div class="ui segment chat-input">
+          <p>Login to send messages</p>
+        </div>
+  
+      </div>
+  
+      <div class="four wide computer eight wide tablet sixteen wide mobile column">
+  
+        <div class="ui segment">
+          <h3 class="ui header">
+            <i class="users icon"></i>
+            Online Users (<%= @users.count %>)
+          </h3>
+  
+          <div class="ui divided list">
+            <% @users.each do |user| %>
+              <div class="item online-user">
+                <div class="ui green empty circular label"></div>
+                <%= user.username %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+  
+      </div>
+  
+    </div>
+  </div>

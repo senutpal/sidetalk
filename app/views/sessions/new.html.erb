@@ -1,2 +1,89 @@
-<h1>You have reached the login route</h1>
-<button class="ui secondary button">Tesh Button</button>
+<div class="ui container auth-container">
+  <div class="ui centered grid">
+    <div class="ten wide computer twelve wide tablet sixteen wide mobile column">
+
+      <div class="ui segment auth-segment">
+
+        <div class="auth-header">
+          <img src="https://img.icons8.com/color/96/speech-bubble-with-dots.png" alt="Sidetalk" class="auth-logo">
+          <h2 class="ui header">Welcome to Sidetalk</h2>
+          <p class="auth-subheader">Connect with your community</p>
+        </div>
+
+        <div class="ui top attached tabular menu auth-tabs">
+          <a class="item active" data-tab="login">
+            <i class="sign in icon"></i> Login
+          </a>
+          <a class="item" data-tab="signup">
+            <i class="user plus icon"></i> Sign Up
+          </a>
+        </div>
+
+        <div class="ui bottom attached tab segment auth-form-segment active" data-tab="login">
+          <form class="ui form">
+            <div class="field">
+              <label>Username</label>
+              <div class="ui left icon input">
+                <input type="text" placeholder="Enter your username">
+                <i class="user icon"></i>
+              </div>
+            </div>
+            <div class="field">
+              <label>Password</label>
+              <div class="ui left icon input">
+                <input type="password" placeholder="Enter your password">
+                <i class="lock icon"></i>
+              </div>
+            </div>
+            <div class="field">
+              <div class="ui checkbox">
+                <input type="checkbox" id="remember">
+                <label for="remember">Remember me</label>
+              </div>
+            </div>
+            <button type="submit" class="ui primary fluid button">
+              <i class="sign in icon"></i> Login
+            </button>
+          </form>
+        </div>
+
+        <div class="ui bottom attached tab segment auth-form-segment" data-tab="signup">
+          <form class="ui form">
+            <div class="field">
+              <label>Username</label>
+              <div class="ui left icon input">
+                <input type="text" placeholder="Choose a username">
+                <i class="user icon"></i>
+              </div>
+            </div>
+            <div class="field">
+              <label>Password</label>
+              <div class="ui left icon input">
+                <input type="password" placeholder="Create a password">
+                <i class="lock icon"></i>
+              </div>
+            </div>
+            <div class="field">
+              <label>Confirm Password</label>
+              <div class="ui left icon input">
+                <input type="password" placeholder="Confirm your password">
+                <i class="lock icon"></i>
+              </div>
+            </div>
+            <button type="submit" class="ui primary fluid button">
+              <i class="user plus icon"></i> Sign Up
+            </button>
+          </form>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("turbo:load", function () {
+    $('.menu .item').tab();
+  });
+</script>
