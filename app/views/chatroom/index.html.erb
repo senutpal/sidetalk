@@ -28,8 +28,45 @@
         </div>
   
         <div class="ui segment chat-input">
-          <p>Login to send messages</p>
+          <% if logged_in? %>
+            <form id="message-form" class="ui form">
+              <div class="ui action input fluid">
+                <input type="text" id="message-body" placeholder="Type your message..." autocomplete="off">
+                <button type="submit" class="ui primary button">
+                  <i class="paper plane icon"></i> Send
+                </button>
+              </div>
+            </form>
+          <% else %>
+            <p><a href="/login">Login</a> to send messages</p>
+          <% end %>
         </div>
+
+        <% if logged_in? %>
+        <script>
+          document.addEventListener("turbo:load", function() {
+            const form = document.getElementById("message-form");
+            const input = document.getElementById("message-body");
+            if (!form) return;
+
+            form.addEventListener("submit", function(e) {
+              e.preventDefault();
+              const body = input.value.trim();
+              if (!body) return;
+
+              fetch("/messages", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                  "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content
+                },
+                body: JSON.stringify({ message: { body: body } })
+              });
+              input.value = "";
+            });
+          });
+        </script>
+        <% end %>
   
       </div>
   
