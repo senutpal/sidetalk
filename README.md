@@ -1,24 +1,18 @@
-# README
+# sidetalk
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+real-time chat app built with rails 8 and actioncable
 
-Things you may want to cover:
+## setup
 
-* Ruby version
+```
+bundle install
+rails db:setup
+rails server
+```
 
-* System dependencies
+## stack
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- rails 8
+- actioncable for websockets
+- semantic ui
+- sqlite
