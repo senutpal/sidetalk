@@ -10,6 +10,12 @@
           <p class="auth-subheader">Connect with your community</p>
         </div>
 
+        <% if flash[:error] %>
+          <div class="ui negative message">
+            <p><%= flash[:error] %></p>
+          </div>
+        <% end %>
+
         <div class="ui top attached tabular menu auth-tabs">
           <a class="item active" data-tab="login">
             <i class="sign in icon"></i> Login
@@ -20,60 +26,54 @@
         </div>
 
         <div class="ui bottom attached tab segment auth-form-segment active" data-tab="login">
-          <form class="ui form">
+          <%= form_with url: login_path, method: :post, class: "ui form", data: { turbo: false } do %>
             <div class="field">
               <label>Username</label>
               <div class="ui left icon input">
-                <input type="text" placeholder="Enter your username">
+                <input type="text" name="username" placeholder="Enter your username" required>
                 <i class="user icon"></i>
               </div>
             </div>
             <div class="field">
               <label>Password</label>
               <div class="ui left icon input">
-                <input type="password" placeholder="Enter your password">
+                <input type="password" name="password" placeholder="Enter your password" required>
                 <i class="lock icon"></i>
-              </div>
-            </div>
-            <div class="field">
-              <div class="ui checkbox">
-                <input type="checkbox" id="remember">
-                <label for="remember">Remember me</label>
               </div>
             </div>
             <button type="submit" class="ui primary fluid button">
               <i class="sign in icon"></i> Login
             </button>
-          </form>
+          <% end %>
         </div>
 
         <div class="ui bottom attached tab segment auth-form-segment" data-tab="signup">
-          <form class="ui form">
+          <%= form_with model: User.new, url: users_path, method: :post, class: "ui form", data: { turbo: false } do |f| %>
             <div class="field">
               <label>Username</label>
               <div class="ui left icon input">
-                <input type="text" placeholder="Choose a username">
+                <%= f.text_field :username, placeholder: "Choose a username", required: true %>
                 <i class="user icon"></i>
               </div>
             </div>
             <div class="field">
               <label>Password</label>
               <div class="ui left icon input">
-                <input type="password" placeholder="Create a password">
+                <%= f.password_field :password, placeholder: "Create a password", required: true %>
                 <i class="lock icon"></i>
               </div>
             </div>
             <div class="field">
               <label>Confirm Password</label>
               <div class="ui left icon input">
-                <input type="password" placeholder="Confirm your password">
+                <%= f.password_field :password_confirmation, placeholder: "Confirm your password", required: true %>
                 <i class="lock icon"></i>
               </div>
             </div>
             <button type="submit" class="ui primary fluid button">
               <i class="user plus icon"></i> Sign Up
             </button>
-          </form>
+          <% end %>
         </div>
 
       </div>
