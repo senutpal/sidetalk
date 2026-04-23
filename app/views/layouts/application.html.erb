@@ -2,64 +2,105 @@
 <html>
   <head>
     <title><%= content_for(:title) || "Sidetalk" %></title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="application-name" content="Sidetalk">
-    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= yield :head %>
+    <link rel="icon" href="https://img.icons8.com/color/96/speech-bubble-with-dots.png">
 
-    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
-    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
+    <!-- Semantic UI -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.css">
 
-    <link rel="icon" href="/icon.png" type="image/png">
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/icon.png">
-
-    <%# Includes all stylesheet files in app/assets/stylesheets %>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.css">
-    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <div class="ui inverted menu" style="border-radius: 0;">
+  <body class="app-body">
+
+    <div class="ui inverted menu top-nav">
+
       <div class="ui container">
-        <div class="header item">
+
+        <a class="header item">
+          <i class="comments icon"></i>
           Sidetalk
-        </div>
-        <a href="#" class="item">Chatrooms</a>
-        <a href="#" class="item">Messages</a>
-        <div class="right menu">
+        </a>
+
+        <div class="right menu computer only">
+
+          <a class="item">Chatrooms</a>
+          <a class="item">Messages</a>
+
           <div class="ui simple dropdown item">
-            <i class="user circle icon"></i> Account <i class="dropdown icon"></i>
+            <i class="user circle icon"></i>
+            Account
+            <i class="dropdown icon"></i>
             <div class="menu">
-              <a class="item" href="#">Profile</a>
-              <a class="item" href="#">Logout</a>
+              <a class="item">Profile</a>
+              <a class="item">Logout</a>
             </div>
           </div>
-          <a href="#" class="ui item">Sign Up</a>
-          <a href="#" class="ui primary button" 
-            style="margin-left: 0.5em; margin-top: 0.5em; margin-bottom: 0.5em;">
-            Login
+
+          <div class="item">
+            <a href="/signup" class="ui inverted button">Sign Up</a>
+          </div>
+
+          <div class="item">
+            <a href="/login" class="ui primary button">Login</a>
+          </div>
+
+        </div>
+
+        <div class="right menu mobile only">
+          <a class="item" id="mobile-menu-toggle">
+            <i class="sidebar icon"></i>
           </a>
         </div>
+
       </div>
     </div>
 
-    <div class="ui container" 
-      style="padding-left: 1.5em; padding-right:1.5em;">
-      <%= yield %>
+    <div class="ui vertical inverted sidebar menu" id="mobile-sidebar">
+
+      <a class="item">Chatrooms</a>
+      <a class="item">Messages</a>
+      <a class="item">Profile</a>
+      <a class="item">Logout</a>
+
+      <div class="item">
+        <a href="/signup" class="ui fluid inverted button">Sign Up</a>
+      </div>
+
+      <div class="item">
+        <a href="/login" class="ui fluid primary button">Login</a>
+      </div>
+
     </div>
-    
+
+    <div class="pusher">
+
+      <main class="main-content">
+        <%= yield %>
+      </main>
+
+    </div>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.js"></script>
 
     <script>
-      document.addEventListener("turbo:load", function() {
+      document.addEventListener("turbo:load", function () {
+
         $('.ui.dropdown').dropdown();
+
+        $('#mobile-menu-toggle').on('click', function () {
+          $('#mobile-sidebar')
+            .sidebar('setting', 'transition', 'overlay')
+            .sidebar('toggle');
+        });
+
       });
     </script>
 
