@@ -4,4 +4,3 @@ class ChatroomController < ApplicationController
     @users = User.all
   end
 end
-

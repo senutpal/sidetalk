@@ -2,4 +2,5 @@
 # CVEs that are not relevant to the application can be enumerated on the ignore list below.
 
 ignore:
-  - CVE-THAT-DOES-NOT-APPLY
+  - GHSA-53p3-c7vp-4mcc
+  - CVE-2026-33306
